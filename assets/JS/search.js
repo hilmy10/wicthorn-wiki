@@ -360,7 +360,7 @@ function handleSearchClick(itemTitle) {
     
     // Handle specific items
     if (itemTitle === 'Documentation Library') {
-        window.location.href = 'https://saltandspell.com';
+        window.open('https://saltandspell.com', '_blank');
         closeMacSearch();
         return;
     }
@@ -379,3 +379,4 @@ function updateHighlight() {
             item.classList.remove('highlighted');
         }
     });
+}
