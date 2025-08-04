@@ -1,3 +1,74 @@
+<!-- UNTUK index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wicthorn Wiki</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/search.css">  <!-- NEW macOS Search CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Your existing navbar and content -->
+    <nav class="navbar">
+        <!-- existing navbar content -->
+    </nav>
+
+    <main class="main-content">
+        <!-- existing homepage content -->
+    </main>
+
+    <footer class="footer">
+        <!-- existing footer content -->
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="assets/js/navigation.js"></script>
+    <script src="assets/js/search.js"></script>  <!-- NEW macOS Search JS -->
+</body>
+</html>
+
+<!-- UNTUK pages/basics.html (contoh) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basics - Wicthorn Wiki</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/search.css">  <!-- NEW macOS Search CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Your page content -->
+    <nav class="navbar">
+        <!-- existing navbar content -->
+    </nav>
+
+    <main class="page-content">
+        <!-- page specific content -->
+    </main>
+
+    <footer class="footer">
+        <!-- existing footer content -->
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="../assets/js/navigation.js"></script>
+    <script src="../assets/js/search.js"></script>  <!-- NEW macOS Search JS -->
+</body>
+</html>
+
+<!-- CATATAN PENTING:
+1. GANTI file search.css yang lama dengan yang baru (macOS style)
+2. GANTI file search.js yang lama dengan yang baru (macOS style) 
+3. JANGAN lupa update path untuk pages di subfolder (../)
+4. macOS search akan muncul otomatis dengan tombol floating di pojok kanan atas
+5. Tekan Cmd+K atau Ctrl+K untuk buka search modal
+6. Data search masih menggunakan contoh, ganti dengan data Wicthorn Anda
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,6 +142,20 @@
     color: #fff;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* bayangan lembut */
 }
+    /* Disable hover zoom effects for about and categories cards */
+    .card.about,
+    .card.categories,
+    .card.about *,
+    .card.categories * {
+        transform: none !important;
+        transition: none !important;
+        transform-origin: initial !important;
+    }
+    .card.about:hover,
+    .card.categories:hover {
+        transform: none !important;
+        scale: 1 !important;
+    }
     .card h3 {
         font-size: 16px;
         font-weight: 600;
@@ -205,15 +290,15 @@
                 <h3>📂 Categories</h3>
                 <ul>
                     <li>📹 Basics <span></span></li>
-                    <li style="justify-content: flex-start;">🔊 <a href="https://saltandspell.com" style="text-decoration: none; color: inherit;">Acts & Progression</a> <span></span></li>
-                    <li>⚙️ World & Environment <span></span></li>
-                    <li>💡 Magic & Ritual <span></span></li>
-                    <li>✍️ Farming & Alchemy <span></span></li>
-                    <li>📢 NPC & Relasi <span></span></li>
-                    <li>🎨 Quest & Event <span></span></li>
-                    <li>📚 Crafting & Relics <span></span></li>
-                    <li>📹 UI & Sistem Tambahan <span></span></li>
-                    <li>🔊 Visual & Art Direction <span></span></li>
+                    <li style="justify-content: flex-start;">🔊<a href="https://saltandspell.com" style="text-decoration: none; color: inherit;">Progression</a> <span></span></li>
+                    <li>⚙️ Environment <span></span></li>
+                    <li>💡 Magic<span></span></li>
+                    <li>✍️ Alchemy <span></span></li>
+                    <li>📢 Characters <span></span></li>
+                    <li>🎨 Quests <span></span></li>
+                    <li>📚 Crafting <span></span></li>
+                    <li>📹 Interface <span></span></li>
+                    <li>🔊 Visuals <span></span></li>
                     <li></li>
                     <li>Main Navigation</li>
                     <li>-------------------------------</li>
