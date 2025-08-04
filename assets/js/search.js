@@ -360,7 +360,7 @@ function handleSearchClick(itemTitle) {
     
     // Handle specific items
     if (itemTitle === 'Documentation Library') {
-        window.open('https://saltandspell.com', '_blank');
+        window.open('https://hilmy10.github.io/wicthorn-wiki/pages/Characters/lioravenna.html', '_blank');
         closeMacSearch();
         return;
     }
