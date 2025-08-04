@@ -379,8 +379,3 @@ function updateHighlight() {
             item.classList.remove('highlighted');
         }
     });
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 455631e1ed6bf51da00a1b22899957be9df5bbea
