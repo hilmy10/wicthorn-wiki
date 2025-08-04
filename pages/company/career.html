@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Tools Manager</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Inter", sans-serif;
+    }
+    body {
+        background: url("../../assets/images/bg4.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: #333;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+        max-width: 1200px;
+        width: 100%;
+    }
+    .header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .header img {
+        width: 60px;
+        height: 60px;
+    }
+    .header h1 {
+        font-size: 28px;
+        font-weight: 700;
+    }
+    /* Sidebar */
+    .sidebar {
+        flex: 1 1 250px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+         /* Transparansi */
+    background: rgba(255, 255, 255, 0.2); /* 20% opacity */
+    
+    /* Blur efek glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* untuk Safari */
+    }
+    .card.about h3 {
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* bayangan lembut */
+}
+    .card.categories h3 {
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* bayangan lembut */
+}
+    .card h3 {
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .card p {
+        font-size: 14px;
+        color: #fff;
+        line-height: 1.4;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.4); /* Supaya teks tetap terbaca */
+        font-weight: 400;      /* Normal weight */
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* bayangan lembut */
+    }
+    .categories ul {
+        list-style: none;
+        margin-top: 8px;
+    }
+    .categories li {
+        font-size: 14px;
+        display: flex;
+        justify-content: space-between;
+        padding: 6px 0;
+        color: #ffffff;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* bayangan lembut */
+    }
+    /* Main content */
+    .main {
+        flex: 3 1 600px;
+        background: #fff;
+        border-radius: 12px;
+        padding: 16px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+         /* Transparansi */
+    background: rgba(255, 255, 255, 0.2); /* 20% opacity */
+    
+    /* Blur efek glass */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* untuk Safari */
+    }
+    .main-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+    .main-header h3 {
+    color: #fff;
+}
+    .tabs {
+        display: flex;
+        gap: 12px;
+    }
+    .tabs button {
+        background: none;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
+        cursor: pointer;
+    }
+    .tabs button.active {
+        border-bottom: 2px solid #333;
+        font-weight: 600;
+    }
+    .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 16px;
+    }
+    .tool-card {
+        border-radius: 10px;
+        padding: 12px;
+        font-size: 13px;
+         background: rgba(255, 255, 255, 0.07); /* 20% opacity */
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+         
+    }
+    .tool-card h4 {
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 4px;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* bayangan lembut */
+    }
+    .tool-card a {
+        color: #ffffff;
+        font-size: 12px;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* bayangan lembut */
+    }
+    .tool-card span {
+        font-size: 12px;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4); /* bayangan lembut */
+    }
+    @media (max-width: 768px) {
+        .container {
+            flex-direction: column;
+        }
+        .main {
+            order: -1;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png" alt="icon" />
+        <h1>Witchorn</h1>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="card about">
+                <h3>✋ About </h3>
+                <p>Wicthorn adalah game Fantasy Farming & Territory Defense RPG yang menggabungkan elemen sandbox, manajemen lahan, sihir, dan strategi pertahanan dalam satu pengalaman imersif. Pemain akan membangun perkebunan, menjelajah dunia penuh misteri, serta melindungi wilayah mereka dari ancaman makhluk gelap.</p>
+            </div>
+            <div class="card categories">
+                <h3>📂 Categories</h3>
+                <ul>
+                    <li>All <span></span></li>
+                    <li>📹 Video <span></span></li>
+                    <li>🔊 Audio <span></span></li>
+                    <li>⚙️ Automation <span></span></li>
+                    <li>💡 Prompting <span></span></li>
+                    <li>✍️ Writing <span></span></li>
+                    <li>📢 Advertising <span></span></li>
+                    <li>🎨 Graphic <span></span></li>
+                    <li>📚 Research <span></span></li>
+                    <li>📹 Video <span></span></li>
+                    <li>🔊 Audio <span></span></li>
+                    <li>⚙️ Automation <span></span></li>
+                    <li>💡 Prompting <span></span></li>
+                    <li>✍️ Writing <span></span></li>
+                    <li>📢 Advertising <span></span></li>
+                    <li>🎨 Graphic <span></span></li>
+                    <li>📚 Research <span></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main">
+            <div class="main-header">
+                <h3>Wiki</h3>
+                <div class="tabs">
+                    <button class="active">All</button>
+                    <button>Pinned</button>
+                </div>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>📹 Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>{:} Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Cursor</h4>
+                    <a href="#">cursor.com</a>
+                    <span>📢 Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Elevenlabs</h4>
+                    <a href="#">elevenlabs.io/app/home</a>
+                    <span>🔊 Audio</span>
+                </div>
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>⚙️ Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>💡 Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Cursor</h4>
+                    <a href="#">cursor.com</a>
+                    <span>✍️ Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Elevenlabs</h4>
+                    <a href="#">elevenlabs.io/app/home</a>
+                    <span>📚 Audio</span>
+                </div>
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>📹 Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>{:} Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Cursor</h4>
+                    <a href="#">cursor.com</a>
+                    <span>📢 Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Elevenlabs</h4>
+                    <a href="#">elevenlabs.io/app/home</a>
+                    <span>🔊 Audio</span>
+                </div>
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>⚙️ Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>💡 Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Cursor</h4>
+                    <a href="#">cursor.com</a>
+                    <span>✍️ Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Elevenlabs</h4>
+                    <a href="#">elevenlabs.io/app/home</a>
+                    <span>📚 Audio</span>
+                </div>
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>📹 Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>{:} Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Cursor</h4>
+                    <a href="#">cursor.com</a>
+                    <span>📢 Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Elevenlabs</h4>
+                    <a href="#">elevenlabs.io/app/home</a>
+                    <span>🔊 Audio</span>
+                </div>
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>⚙️ Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>💡 Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Cursor</h4>
+                    <a href="#">cursor.com</a>
+                    <span>✍️ Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Elevenlabs</h4>
+                    <a href="#">elevenlabs.io/app/home</a>
+                    <span>📚 Audio</span>
+                </div>
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>📹 Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>{:} Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Cursor</h4>
+                    <a href="#">cursor.com</a>
+                    <span>📢 Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Elevenlabs</h4>
+                    <a href="#">elevenlabs.io/app/home</a>
+                    <span>🔊 Audio</span>
+                </div>
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>⚙️ Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>💡 Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Cursor</h4>
+                    <a href="#">cursor.com</a>
+                    <span>✍️ Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Elevenlabs</h4>
+                    <a href="#">elevenlabs.io/app/home</a>
+                    <span>📚 Audio</span>
+                </div>
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>📹 Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>{:} Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Cursor</h4>
+                    <a href="#">cursor.com</a>
+                    <span>📢 Coding</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Elevenlabs</h4>
+                    <a href="#">elevenlabs.io/app/home</a>
+                    <span>🔊 Audio</span>
+                </div>
+                <div class="tool-card">
+                    <h4>HeyGen</h4>
+                    <a href="#">app.heygen.com/home</a>
+                    <span>⚙️ Video</span>
+                </div>
+                <div class="tool-card">
+                    <h4>Lovable</h4>
+                    <a href="#">lovable.dev</a>
+                    <span>💡 Coding</span>
+                </div>
+             <div class="section-item">
+                    <span class="item-icon">📚</span>
+                    <span>Library</span>
+                </div>
+                
+                <div class="section-item">
+                    <span class="item-icon">📗</span>
+                    <span>Employee</span>
+                </div>
+                
+                <div class="section-item">
+                    <span class="item-icon">🔧</span>
+                    <span>Software</span>
+                </div>
+                
+                <div class="section-item">
+                    <span class="item-icon">📝</span>
+                    <span>Resource</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
